@@ -32,7 +32,7 @@ namespace WebApiMod5
             services.AddAutoMapper(options =>
 
             {
-
+                options.CreateMap<AuthorCreationDTO, Author>();
                 options.CreateMap<Author, AuthorDTO>();
 
             }, typeof(Startup));

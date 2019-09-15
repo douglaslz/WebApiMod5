@@ -59,12 +59,13 @@ namespace WebApiMod5.Controllers
 
         //Post api/authors
         [HttpPost]
-        public async Task<ActionResult> Post([FromBody] Author author)
+        public async Task<ActionResult> Post([FromBody] AuthorCreationDTO authorcreationDTO)
         {
-
+            var author = mapper.Map<Author>(authorcreationDTO);
             context.Add(author);
             await context.SaveChangesAsync();
-            return Ok(new CreatedAtRouteResult("GetAuthor", new { id = author.Id }, author));
+            var authorDTO = mapper.Map<AuthorDTO>(author);
+            return new CreatedAtRouteResult("GetAuthor", new { id = author.Id }, authorDTO);
         }
 
 
@@ -75,7 +76,7 @@ namespace WebApiMod5.Controllers
 
             context.Entry(author).State = EntityState.Modified;
             await context.SaveChangesAsync();
-            return Ok(new CreatedAtRouteResult("GetAuthor", new { id = author.Id }, author));
+            return new CreatedAtRouteResult("GetAuthor", new { id = author.Id }, author);
         }
 
     }
