@@ -34,6 +34,8 @@ namespace WebApiMod5
             {
                 options.CreateMap<AuthorCreationDTO, Author>();
                 options.CreateMap<Author, AuthorDTO>();
+                options.CreateMap<AuthorCreationDTO, Author>();
+
 
             }, typeof(Startup));
 
